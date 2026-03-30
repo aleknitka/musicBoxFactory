@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A Python library that programmatically generates baby sleep audio as WAV files — combining a synthesized music box melody (plucked, bell-like tones with natural decay) layered over generated ambient sound (white/pink noise, womb/heartbeat, fan/brown noise). Ships with built-in lullaby presets and accepts custom note sequences for the melody layer.
+A Python library that programmatically generates baby sleep audio as WAV files — combining a music box melody rendered from a caller-provided `.sf2` soundfont layered over generated ambient sound (white/pink/brown noise, womb/heartbeat). Ships with built-in lullaby presets, accepts custom note sequences, and can procedurally generate melodies via circle-of-fifths traversal.
 
 ## Core Value
 
@@ -44,7 +44,7 @@ Given a melody (preset or custom) and an ambient type, produce a seamlessly loop
 ## Constraints
 
 - **Language**: Python >=3.13 — set in pyproject.toml
-- **Dependencies**: Minimal — numpy + wave (stdlib) preferred; avoid large audio frameworks
+- **Dependencies**: NumPy 2.x + SciPy for WAV output; FluidSynth (C library + python bindings) for soundfont rendering — system dep is acceptable given the soundfont requirement
 - **Output format**: WAV only (no MP3, OGG, etc.) for v1
 - **Loopability**: Generated audio must loop seamlessly (no click at loop point)
 
@@ -52,7 +52,7 @@ Given a melody (preset or custom) and an ambient type, produce a seamlessly loop
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Pure synthesis, no input audio files | User specified fully programmatic generation | — Pending |
+| Soundfont rendering (not pure synthesis) | Richer, configurable timbre; caller provides .sf2 | — Pending |
 | Library API, not CLI | User specified reusable Python library as primary artifact | — Pending |
 | numpy + stdlib wave | Minimal deps; sufficient for synthesis and WAV writing | — Pending |
 

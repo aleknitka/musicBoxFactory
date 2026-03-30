@@ -65,26 +65,26 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TONE-01 | — | Pending |
-| TONE-02 | — | Pending |
-| MELO-01 | — | Pending |
-| MELO-02 | — | Pending |
-| MELO-03 | — | Pending |
-| AMBI-01 | — | Pending |
-| AMBI-02 | — | Pending |
-| AMBI-03 | — | Pending |
-| AMBI-04 | — | Pending |
-| OUT-01 | — | Pending |
-| OUT-02 | — | Pending |
-| OUT-03 | — | Pending |
-| OUT-04 | — | Pending |
-| OUT-05 | — | Pending |
+| TONE-01 | Phase 1 | Pending |
+| TONE-02 | Phase 1 | Pending |
+| MELO-01 | Phase 2 | Pending |
+| MELO-02 | Phase 2 | Pending |
+| MELO-03 | Phase 2 | Pending |
+| AMBI-01 | Phase 3 | Pending |
+| AMBI-02 | Phase 3 | Pending |
+| AMBI-03 | Phase 3 | Pending |
+| AMBI-04 | Phase 3 | Pending |
+| OUT-01 | Phase 4 | Pending |
+| OUT-02 | Phase 4 | Pending |
+| OUT-03 | Phase 4 | Pending |
+| OUT-04 | Phase 4 | Pending |
+| OUT-05 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 14 total
-- Mapped to phases: 0
-- Unmapped: 14 ⚠️ (populated during roadmap creation)
+- Mapped to phases: 14
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-30*
-*Last updated: 2026-03-30 after initial definition*
+*Last updated: 2026-03-30 — traceability populated during roadmap creation*
