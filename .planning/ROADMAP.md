@@ -12,7 +12,7 @@ Build a pure-Python audio synthesis library that produces seamlessly loopable ba
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Tone Synthesis** - Render music box tones from a .sf2 soundfont with named instrument presets
+- [x] **Phase 1: Tone Synthesis** - Render music box tones from a .sf2 soundfont with named instrument presets (completed 2026-03-31)
 - [ ] **Phase 2: Melody Pipeline** - Sequence notes into loopable melodies using presets, custom input, or procedural generation
 - [ ] **Phase 3: Ambient Generation** - Produce white, pink, brown, and womb/heartbeat noise buffers
 - [ ] **Phase 4: Mixing & WAV Output** - Combine melody and ambient layers, normalize, and write a loop-safe WAV file
@@ -31,8 +31,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Scaffold: install deps, create package skeleton, write failing test stubs (TONE-01, TONE-02)
-- [ ] 01-02-PLAN.md — Implement: Synth class in synth.py, turn test suite GREEN (TONE-01, TONE-02)
+- [x] 01-01-PLAN.md — Scaffold: install deps, create package skeleton, write failing test stubs (TONE-01, TONE-02)
+- [x] 01-02-PLAN.md — Implement: Synth class in synth.py, turn test suite GREEN (TONE-01, TONE-02)
 
 ### Phase 2: Melody Pipeline
 **Goal**: Callers can produce a full loopable melody from presets, custom note sequences, or procedural generation
@@ -75,7 +75,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Tone Synthesis | 0/2 | In progress | - |
+| 1. Tone Synthesis | 2/2 | Complete   | 2026-03-31 |
 | 2. Melody Pipeline | 0/? | Not started | - |
 | 3. Ambient Generation | 0/? | Not started | - |
 | 4. Mixing & WAV Output | 0/? | Not started | - |
