@@ -1,0 +1,7 @@
+[project]
+name = "musicboxfactory"
+version = "0.1.0"
+description = "Music Box Factory is a tool for algorythmic and programatic creation of simple loops for emulation of music boxes."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
