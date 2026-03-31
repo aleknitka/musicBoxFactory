@@ -28,7 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Caller can select a named instrument preset (`"music_box"`, `"celesta"`, `"bells"`) and have it map to the correct MIDI patch in the soundfont
   3. Rendered tone has a perceptibly warm, decaying timbre — not a flat sine wave
   4. A single rendered note can be written to a WAV file and heard to confirm tone quality
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Scaffold: install deps, create package skeleton, write failing test stubs (TONE-01, TONE-02)
+- [ ] 01-02-PLAN.md — Implement: Synth class in synth.py, turn test suite GREEN (TONE-01, TONE-02)
 
 ### Phase 2: Melody Pipeline
 **Goal**: Callers can produce a full loopable melody from presets, custom note sequences, or procedural generation
@@ -71,7 +75,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Tone Synthesis | 0/? | Not started | - |
+| 1. Tone Synthesis | 0/2 | In progress | - |
 | 2. Melody Pipeline | 0/? | Not started | - |
 | 3. Ambient Generation | 0/? | Not started | - |
 | 4. Mixing & WAV Output | 0/? | Not started | - |
