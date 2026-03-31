@@ -7,8 +7,8 @@
 
 ### Tone Synthesis
 
-- [ ] **TONE-01**: Caller can render music box tones from a caller-provided `.sf2` soundfont file
-- [ ] **TONE-02**: Library exposes named instrument presets (e.g. `"music_box"`, `"celesta"`, `"bells"`) that map to General MIDI patch numbers in the soundfont
+- [x] **TONE-01**: Caller can render music box tones from a caller-provided `.sf2` soundfont file
+- [x] **TONE-02**: Library exposes named instrument presets (e.g. `"music_box"`, `"celesta"`, `"bells"`) that map to General MIDI patch numbers in the soundfont
 
 ### Melody
 
@@ -65,8 +65,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TONE-01 | Phase 1 | Pending |
-| TONE-02 | Phase 1 | Pending |
+| TONE-01 | Phase 1 | Complete |
+| TONE-02 | Phase 1 | Complete |
 | MELO-01 | Phase 2 | Pending |
 | MELO-02 | Phase 2 | Pending |
 | MELO-03 | Phase 2 | Pending |
