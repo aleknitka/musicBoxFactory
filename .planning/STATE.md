@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: planning
+stopped_at: Completed 01-tone-synthesis plan 02 (Synth class implementation)
+last_updated: "2026-03-31T20:42:50.193Z"
+last_activity: 2026-03-30 — Roadmap created; Phase 1 ready to plan
+progress:
+  total_phases: 4
+  completed_phases: 1
+  total_plans: 2
+  completed_plans: 2
+  percent: 0
+---
+
 # Project State
 
 ## Project Reference
@@ -19,6 +35,7 @@ Progress: [░░░░░░░░░░] 0%
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 0
 - Average duration: —
 - Total execution time: 0 hours
@@ -30,10 +47,13 @@ Progress: [░░░░░░░░░░] 0%
 | - | - | - | - |
 
 **Recent Trend:**
+
 - Last 5 plans: —
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-tone-synthesis P01 | 15 | 2 tasks | 5 files |
+| Phase 01-tone-synthesis P02 | 18 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -45,6 +65,11 @@ Recent decisions affecting current work:
 - Soundfont rendering (not pure synthesis): Richer timbre; caller provides .sf2 — chosen over pure-sine path
 - Library API, not CLI: Primary artifact is a reusable Python library
 - NumPy + SciPy for WAV: Minimal deps; stdlib wave avoided in favour of scipy.io.wavfile.write
+- [Phase 01-tone-synthesis]: hatchling build backend added to pyproject.toml for src/ layout package discovery
+- [Phase 01-tone-synthesis]: libfluidsynth3 is a manual sudo prerequisite — documented as install gate, does not block unit test collection
+- [Phase 01-tone-synthesis]: Integration tests use requires_sf2 marker with MBF_SF2_PATH env var override for CI flexibility
+- [Phase 01-tone-synthesis]: Lazy fluidsynth import with OSError/ImportError catch defers C-library errors to Synth instantiation, allowing unit tests to pass without libfluidsynth3
+- [Phase 01-tone-synthesis]: Peak normalization in render() guarantees [-1.0, 1.0] buffer contract regardless of FluidSynth gain
 
 ### Pending Todos
 
@@ -58,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30
-Stopped at: Roadmap created; all 14 v1 requirements mapped across 4 phases
+Last session: 2026-03-31T20:42:50.191Z
+Stopped at: Completed 01-tone-synthesis plan 02 (Synth class implementation)
 Resume file: None
