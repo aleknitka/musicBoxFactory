@@ -12,14 +12,15 @@ Given a melody (preset or custom) and an ambient type, produce a seamlessly loop
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Music box tone synthesis — soundfont rendering via FluidSynth, `Synth` class, named presets (Validated in Phase 1: Tone Synthesis)
+- [x] Built-in lullaby presets (Twinkle Twinkle, Brahms' Lullaby, Mary Had a Little Lamb) (Validated in Phase 2: Melody Pipeline)
+- [x] Custom melody input via note sequences (pitch + duration) (Validated in Phase 2: Melody Pipeline)
+- [x] Procedural melody generation via circle-of-fifths traversal (Validated in Phase 2: Melody Pipeline)
+- [x] Loop-safe melody buffer with zero-crossing trim (Validated in Phase 2: Melody Pipeline)
 
 ### Active
 
-- [ ] Music box tone synthesis — plucked tine timbre with attack + exponential decay, warm and sleep-inducing
-- [ ] Built-in lullaby presets (Twinkle Twinkle, Brahms' Lullaby, etc.)
-- [ ] Custom melody input via note sequences (pitch + duration)
-- [ ] Ambient sound generation — white/pink noise, womb/heartbeat pulse, fan/brown noise
+- [x] Ambient sound generation — white/pink/brown noise, womb/heartbeat pulse (Validated in Phase 3: Ambient Generation)
 - [ ] Layering — mix melody and ambient at configurable relative volumes
 - [ ] WAV output — generates a loopable WAV file of configurable duration
 - [ ] Clean Python library API — callable functions, no CLI required
@@ -57,4 +58,4 @@ Given a melody (preset or custom) and an ambient type, produce a seamlessly loop
 | numpy + stdlib wave | Minimal deps; sufficient for synthesis and WAV writing | — Pending |
 
 ---
-*Last updated: 2026-03-30 after initial questioning*
+*Last updated: 2026-04-01 — Phase 3 complete (Ambient Generation)*

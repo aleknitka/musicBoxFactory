@@ -12,9 +12,9 @@ Build a pure-Python audio synthesis library that produces seamlessly loopable ba
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Tone Synthesis** - Render music box tones from a .sf2 soundfont with named instrument presets
-- [ ] **Phase 2: Melody Pipeline** - Sequence notes into loopable melodies using presets, custom input, or procedural generation
-- [ ] **Phase 3: Ambient Generation** - Produce white, pink, brown, and womb/heartbeat noise buffers
+- [x] **Phase 1: Tone Synthesis** - Render music box tones from a .sf2 soundfont with named instrument presets (completed 2026-03-31)
+- [x] **Phase 2: Melody Pipeline** - Sequence notes into loopable melodies using presets, custom input, or procedural generation (completed 2026-04-01)
+- [x] **Phase 3: Ambient Generation** - Produce white, pink, brown, and womb/heartbeat noise buffers (completed 2026-04-01)
 - [ ] **Phase 4: Mixing & WAV Output** - Combine melody and ambient layers, normalize, and write a loop-safe WAV file
 
 ## Phase Details
@@ -28,7 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Caller can select a named instrument preset (`"music_box"`, `"celesta"`, `"bells"`) and have it map to the correct MIDI patch in the soundfont
   3. Rendered tone has a perceptibly warm, decaying timbre — not a flat sine wave
   4. A single rendered note can be written to a WAV file and heard to confirm tone quality
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [x] 01-01-PLAN.md — Scaffold: install deps, create package skeleton, write failing test stubs (TONE-01, TONE-02)
+- [x] 01-02-PLAN.md — Implement: Synth class in synth.py, turn test suite GREEN (TONE-01, TONE-02)
 
 ### Phase 2: Melody Pipeline
 **Goal**: Callers can produce a full loopable melody from presets, custom note sequences, or procedural generation
@@ -39,7 +43,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Caller can supply a custom list of `(note, duration)` tuples and receive the corresponding melody buffer
   3. Caller can invoke procedural generation and receive a novel melody that traverses the circle of fifths
   4. A melody buffer rendered to WAV plays back without an audible click at the loop boundary
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [x] 02-01-PLAN.md — Scaffold: write failing test stubs for MELO-01/02/03, create melody.py skeleton (MELO-01, MELO-02, MELO-03)
+- [x] 02-02-PLAN.md — Implement: render_sequence, presets, procedural generator, MelodyPipeline class, update __init__.py (MELO-01, MELO-02, MELO-03)
 
 ### Phase 3: Ambient Generation
 **Goal**: Callers can generate any of the four ambient sound types as audio buffers
@@ -50,7 +58,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Caller can generate a pink noise buffer with a −3 dB/octave rolloff (no DC drift)
   3. Caller can generate a brown noise buffer with a −6 dB/octave rolloff (no DC drift)
   4. Caller can generate a womb/heartbeat buffer: brown noise base with a rhythmic ~60 BPM low-frequency pulse audible on playback
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [x] 03-01-PLAN.md — Scaffold: move scipy to runtime deps, create ambient.py stub, write 12 failing test stubs (AMBI-01, AMBI-02, AMBI-03, AMBI-04)
+- [x] 03-02-PLAN.md — Implement: white/pink/brown/womb methods, export AmbientGenerator from top-level package (AMBI-01, AMBI-02, AMBI-03, AMBI-04)
 
 ### Phase 4: Mixing & WAV Output
 **Goal**: Callers can mix melody and ambient layers and write a normalized, loop-safe WAV file
@@ -71,7 +83,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Tone Synthesis | 0/? | Not started | - |
-| 2. Melody Pipeline | 0/? | Not started | - |
-| 3. Ambient Generation | 0/? | Not started | - |
+| 1. Tone Synthesis | 2/2 | Complete   | 2026-03-31 |
+| 2. Melody Pipeline | 2/2 | Complete   | 2026-04-01 |
+| 3. Ambient Generation | 2/2 | Complete   | 2026-04-01 |
 | 4. Mixing & WAV Output | 0/? | Not started | - |

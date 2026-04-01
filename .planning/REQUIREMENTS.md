@@ -7,21 +7,21 @@
 
 ### Tone Synthesis
 
-- [ ] **TONE-01**: Caller can render music box tones from a caller-provided `.sf2` soundfont file
-- [ ] **TONE-02**: Library exposes named instrument presets (e.g. `"music_box"`, `"celesta"`, `"bells"`) that map to General MIDI patch numbers in the soundfont
+- [x] **TONE-01**: Caller can render music box tones from a caller-provided `.sf2` soundfont file
+- [x] **TONE-02**: Library exposes named instrument presets (e.g. `"music_box"`, `"celesta"`, `"bells"`) that map to General MIDI patch numbers in the soundfont
 
 ### Melody
 
-- [ ] **MELO-01**: Library ships with built-in lullaby presets (Twinkle Twinkle, Brahms' Lullaby, and others) as note sequences
-- [ ] **MELO-02**: Caller can provide a custom note sequence as a list of `(note, duration)` tuples (e.g. `[("c4", 4), ("g4", 8)]`)
-- [ ] **MELO-03**: Library can procedurally generate a novel melody loop by traversing the circle of fifths (Western scales; non-Western deferred to v2)
+- [x] **MELO-01**: Library ships with built-in lullaby presets (Twinkle Twinkle, Brahms' Lullaby, and others) as note sequences
+- [x] **MELO-02**: Caller can provide a custom note sequence as a list of `(note, duration)` tuples (e.g. `[("c4", 4), ("g4", 8)]`)
+- [x] **MELO-03**: Library can procedurally generate a novel melody loop by traversing the circle of fifths (Western scales; non-Western deferred to v2)
 
 ### Ambient
 
-- [ ] **AMBI-01**: Library can generate white noise as an audio buffer
-- [ ] **AMBI-02**: Library can generate pink noise (FFT-shaped, −3 dB/octave) as an audio buffer
-- [ ] **AMBI-03**: Library can generate brown noise (FFT-shaped, no DC drift) as an audio buffer
-- [ ] **AMBI-04**: Library can generate womb/heartbeat ambient (brown noise + ~60 BPM LFO pulse)
+- [x] **AMBI-01**: Library can generate white noise as an audio buffer
+- [x] **AMBI-02**: Library can generate pink noise (FFT-shaped, −3 dB/octave) as an audio buffer
+- [x] **AMBI-03**: Library can generate brown noise (FFT-shaped, no DC drift) as an audio buffer
+- [x] **AMBI-04**: Library can generate womb/heartbeat ambient (brown noise + ~60 BPM LFO pulse)
 
 ### Mixing & Output
 
@@ -65,15 +65,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TONE-01 | Phase 1 | Pending |
-| TONE-02 | Phase 1 | Pending |
-| MELO-01 | Phase 2 | Pending |
-| MELO-02 | Phase 2 | Pending |
-| MELO-03 | Phase 2 | Pending |
-| AMBI-01 | Phase 3 | Pending |
-| AMBI-02 | Phase 3 | Pending |
-| AMBI-03 | Phase 3 | Pending |
-| AMBI-04 | Phase 3 | Pending |
+| TONE-01 | Phase 1 | Complete |
+| TONE-02 | Phase 1 | Complete |
+| MELO-01 | Phase 2 | Complete |
+| MELO-02 | Phase 2 | Complete |
+| MELO-03 | Phase 2 | Complete |
+| AMBI-01 | Phase 3 | Complete |
+| AMBI-02 | Phase 3 | Complete |
+| AMBI-03 | Phase 3 | Complete |
+| AMBI-04 | Phase 3 | Complete |
 | OUT-01 | Phase 4 | Pending |
 | OUT-02 | Phase 4 | Pending |
 | OUT-03 | Phase 4 | Pending |
