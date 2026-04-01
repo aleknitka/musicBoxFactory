@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Tone Synthesis** - Render music box tones from a .sf2 soundfont with named instrument presets (completed 2026-03-31)
 - [x] **Phase 2: Melody Pipeline** - Sequence notes into loopable melodies using presets, custom input, or procedural generation (completed 2026-04-01)
-- [ ] **Phase 3: Ambient Generation** - Produce white, pink, brown, and womb/heartbeat noise buffers
+- [x] **Phase 3: Ambient Generation** - Produce white, pink, brown, and womb/heartbeat noise buffers (completed 2026-04-01)
 - [ ] **Phase 4: Mixing & WAV Output** - Combine melody and ambient layers, normalize, and write a loop-safe WAV file
 
 ## Phase Details
@@ -62,7 +62,7 @@ Plans:
 
 Plans:
 - [x] 03-01-PLAN.md — Scaffold: move scipy to runtime deps, create ambient.py stub, write 12 failing test stubs (AMBI-01, AMBI-02, AMBI-03, AMBI-04)
-- [ ] 03-02-PLAN.md — Implement: white/pink/brown/womb methods, export AmbientGenerator from top-level package (AMBI-01, AMBI-02, AMBI-03, AMBI-04)
+- [x] 03-02-PLAN.md — Implement: white/pink/brown/womb methods, export AmbientGenerator from top-level package (AMBI-01, AMBI-02, AMBI-03, AMBI-04)
 
 ### Phase 4: Mixing & WAV Output
 **Goal**: Callers can mix melody and ambient layers and write a normalized, loop-safe WAV file
@@ -85,5 +85,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Tone Synthesis | 2/2 | Complete   | 2026-03-31 |
 | 2. Melody Pipeline | 2/2 | Complete   | 2026-04-01 |
-| 3. Ambient Generation | 1/2 | In Progress|  |
+| 3. Ambient Generation | 2/2 | Complete   | 2026-04-01 |
 | 4. Mixing & WAV Output | 0/? | Not started | - |
