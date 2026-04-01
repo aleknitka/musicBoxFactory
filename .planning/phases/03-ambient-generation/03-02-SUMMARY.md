@@ -127,6 +127,16 @@ None - all four noise methods are fully implemented and produce correct output.
 - Buffer contract (float32, mono, [-1.0, 1.0], 44100 Hz) enforced for all four methods
 - No blockers for Phase 4
 
+## Self-Check: PASSED
+
+- FOUND: src/musicboxfactory/ambient.py
+- FOUND: src/musicboxfactory/__init__.py
+- FOUND: tests/test_ambient.py
+- FOUND: .planning/phases/03-ambient-generation/03-02-SUMMARY.md
+- FOUND: commit 55d6d98 (feat(03-02): implement white, pink, brown, and womb noise methods)
+- FOUND: commit dfe9bca (feat(03-02): export AmbientGenerator from top-level package)
+- FOUND: commit 5239074 (docs(03-02): complete ambient generation implementation plan)
+
 ---
 *Phase: 03-ambient-generation*
 *Completed: 2026-04-01*
