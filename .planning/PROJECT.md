@@ -20,8 +20,7 @@ Given a melody (preset or custom) and an ambient type, produce a seamlessly loop
 
 ### Active
 
-- [ ] Ambient sound generation — white/pink noise, womb/heartbeat pulse, fan/brown noise
-- [ ] Ambient sound generation — white/pink noise, womb/heartbeat pulse, fan/brown noise
+- [x] Ambient sound generation — white/pink/brown noise, womb/heartbeat pulse (Validated in Phase 3: Ambient Generation)
 - [ ] Layering — mix melody and ambient at configurable relative volumes
 - [ ] WAV output — generates a loopable WAV file of configurable duration
 - [ ] Clean Python library API — callable functions, no CLI required
@@ -59,4 +58,4 @@ Given a melody (preset or custom) and an ambient type, produce a seamlessly loop
 | numpy + stdlib wave | Minimal deps; sufficient for synthesis and WAV writing | — Pending |
 
 ---
-*Last updated: 2026-04-01 — Phase 2 complete (Melody Pipeline)*
+*Last updated: 2026-04-01 — Phase 3 complete (Ambient Generation)*
