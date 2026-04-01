@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 02-melody-pipeline plan 02 (full implementation)
-last_updated: "2026-04-01T06:03:49.053Z"
+status: executing
+stopped_at: Completed 03-ambient-generation plan 01 (scaffold)
+last_updated: "2026-04-01T14:02:56.423Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 6
+  completed_plans: 5
   percent: 0
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** Given a melody (preset, custom, or procedurally generated) and an ambient type, produce a seamlessly loopable WAV file that sounds warm and sleep-inducing for babies.
-**Current focus:** Phase 02 — melody-pipeline
+**Current focus:** Phase 03 — ambient-generation
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 03 (ambient-generation) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-04-01
 
 Progress: [░░░░░░░░░░] 0%
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-tone-synthesis P02 | 18 | 2 tasks | 2 files |
 | Phase 02-melody-pipeline P01 | 116 | 2 tasks | 2 files |
 | Phase 02-melody-pipeline P02 | 245 | 3 tasks | 2 files |
+| Phase 03-ambient-generation P01 | 8 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - [Phase 01-tone-synthesis]: Peak normalization in render() guarantees [-1.0, 1.0] buffer contract regardless of FluidSynth gain
 - [Phase 02-melody-pipeline]: LULLABY_PRESETS stubs use empty lists to allow imports succeed and preserve dict structure for Plan 02
 - [Phase 02-melody-pipeline]: Pre-existing mypy unused-ignore in synth.py deferred (out-of-scope for melody plan)
+- [Phase 03-ambient-generation]: scipy moved to runtime [project] dependencies so library users receive it automatically
+- [Phase 03-ambient-generation]: type: ignore[import-untyped] for scipy matching pyfluidsynth pattern in synth.py
+- [Phase 03-ambient-generation]: AmbientGenerator uses np.random.default_rng(seed) for reproducible noise generation
 
 ### Pending Todos
 
@@ -87,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T06:00:01.596Z
-Stopped at: Completed 02-melody-pipeline plan 02 (full implementation)
+Last session: 2026-04-01T14:02:56.420Z
+Stopped at: Completed 03-ambient-generation plan 01 (scaffold)
 Resume file: None
