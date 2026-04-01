@@ -15,7 +15,7 @@ Module-level helpers (also importable):
 """
 from __future__ import annotations
 
-import random  # noqa: F401  -- used in generate_circle_of_fifths (Task 2)
+import random
 
 import numpy as np
 
@@ -24,10 +24,39 @@ from musicboxfactory.synth import SAMPLE_RATE, Synth
 # Type alias
 NoteSequence = list[tuple[str, float]]
 
-# --- Lullaby preset note tables (stubs — empty lists until Plan 02) ---
-TWINKLE_TWINKLE: NoteSequence = []
-BRAHMS_LULLABY: NoteSequence = []
-MARY_HAD_A_LITTLE_LAMB: NoteSequence = []
+# --- Lullaby preset note tables ---
+TWINKLE_TWINKLE: NoteSequence = [
+    ("c4", 0.5), ("c4", 0.5), ("g4", 0.5), ("g4", 0.5),
+    ("a4", 0.5), ("a4", 0.5), ("g4", 1.0),
+    ("f4", 0.5), ("f4", 0.5), ("e4", 0.5), ("e4", 0.5),
+    ("d4", 0.5), ("d4", 0.5), ("c4", 1.0),
+    ("g4", 0.5), ("g4", 0.5), ("f4", 0.5), ("f4", 0.5),
+    ("e4", 0.5), ("e4", 0.5), ("d4", 1.0),
+    ("g4", 0.5), ("g4", 0.5), ("f4", 0.5), ("f4", 0.5),
+    ("e4", 0.5), ("e4", 0.5), ("d4", 1.0),
+    ("c4", 0.5), ("c4", 0.5), ("g4", 0.5), ("g4", 0.5),
+    ("a4", 0.5), ("a4", 0.5), ("g4", 1.0),
+    ("f4", 0.5), ("f4", 0.5), ("e4", 0.5), ("e4", 0.5),
+    ("d4", 0.5), ("d4", 0.5), ("c4", 1.0),
+]
+
+BRAHMS_LULLABY: NoteSequence = [
+    ("g4", 0.75), ("e4", 0.25), ("e4", 0.5),
+    ("g4", 0.75), ("e4", 0.25), ("e4", 0.5),
+    ("g4", 0.5), ("g4", 0.25), ("a4", 0.25), ("g4", 0.5), ("e4", 0.5),
+    ("f4", 0.5), ("f4", 0.25), ("g4", 0.25), ("f4", 0.5), ("d4", 0.5),
+    ("e4", 0.5), ("e4", 0.25), ("f4", 0.25), ("e4", 0.5), ("c4", 0.5),
+]
+
+MARY_HAD_A_LITTLE_LAMB: NoteSequence = [
+    ("e4", 0.5), ("d4", 0.5), ("c4", 0.5), ("d4", 0.5),
+    ("e4", 0.5), ("e4", 0.5), ("e4", 1.0),
+    ("d4", 0.5), ("d4", 0.5), ("d4", 1.0),
+    ("e4", 0.5), ("g4", 0.5), ("g4", 1.0),
+    ("e4", 0.5), ("d4", 0.5), ("c4", 0.5), ("d4", 0.5),
+    ("e4", 0.5), ("e4", 0.5), ("e4", 0.5), ("e4", 0.5),
+    ("d4", 0.5), ("d4", 0.5), ("e4", 0.5), ("d4", 0.5), ("c4", 1.0),
+]
 
 LULLABY_PRESETS: dict[str, NoteSequence] = {
     "twinkle": TWINKLE_TWINKLE,
@@ -107,19 +136,80 @@ def generate_circle_of_fifths(
     note_duration: float = 0.4,
     seed: int | None = None,
 ) -> NoteSequence:
-    raise NotImplementedError
+    """Generate a procedural melody traversing the circle of fifths.
+
+    Creates a deterministic (when seeded) melody by visiting keys related by
+    fifths and walking scale degrees within each key.
+
+    Args:
+        num_notes: Total number of notes to generate.
+        num_fifths: Number of fifth-related key changes to traverse.
+        root: Root note name (e.g. 'c', 'g', 'd').
+        octave: Starting octave (clamped to [3, 5] range during generation).
+        note_duration: Duration in seconds for each generated note.
+        seed: Random seed for deterministic output. None = non-deterministic.
+
+    Returns:
+        List of exactly num_notes (note_name, duration) tuples.
+    """
+    rng = random.Random(seed)
+    root_idx = CHROMATIC.index(root.lower())
+    result: NoteSequence = []
+
+    notes_per_key = max(1, num_notes // (num_fifths + 1))
+    scale_degree = 0
+    current_octave = octave
+
+    keys_to_visit: list[int] = [root_idx]
+    for _ in range(num_fifths):
+        keys_to_visit.append((keys_to_visit[-1] + 7) % 12)
+    keys_to_visit.append(root_idx)  # return to root
+
+    for key_root in keys_to_visit:
+        scale = [(key_root + interval) % 12 for interval in MAJOR_INTERVALS]
+        for _ in range(notes_per_key):
+            if len(result) >= num_notes:
+                break
+            pitch_idx = scale[scale_degree % len(scale)]
+            note_name = CHROMATIC[pitch_idx] + str(current_octave)
+            result.append((note_name, note_duration))
+
+            step = rng.choices([1, -1, 2, -2], weights=[4, 4, 1, 1])[0]
+            next_degree = scale_degree + step
+            if next_degree < 0:
+                next_degree = 0
+                current_octave = max(3, current_octave - 1)  # clamp low
+            elif next_degree >= len(scale):
+                next_degree = len(scale) - 1
+                current_octave = min(5, current_octave + 1)  # clamp high
+            scale_degree = next_degree
+
+    return result[:num_notes]
 
 
 class MelodyPipeline:
+    """Sequences Synth notes into a melody buffer.
+
+    Args:
+        synth: Constructed Synth instance (Phase 1).
+        gap_seconds: Silence between notes in seconds (default 50 ms).
+    """
+
     def __init__(self, synth: Synth, gap_seconds: float = 0.05) -> None:
         self._synth = synth
         self._gap_seconds = gap_seconds
 
     def from_preset(self, name: str) -> np.ndarray:
-        raise NotImplementedError
+        """Render a built-in lullaby preset. Raises ValueError for unknown name."""
+        if name not in LULLABY_PRESETS:
+            raise ValueError(
+                f"Unknown preset {name!r}. Valid presets: {list(LULLABY_PRESETS)}"
+            )
+        return render_sequence(self._synth, LULLABY_PRESETS[name], self._gap_seconds)
 
     def from_notes(self, notes: NoteSequence) -> np.ndarray:
-        raise NotImplementedError
+        """Render a caller-supplied note sequence."""
+        return render_sequence(self._synth, notes, self._gap_seconds)
 
     def from_procedural(
         self,
@@ -127,4 +217,8 @@ class MelodyPipeline:
         num_fifths: int = 2,
         seed: int | None = None,
     ) -> np.ndarray:
-        raise NotImplementedError
+        """Generate and render a circle-of-fifths melody."""
+        notes = generate_circle_of_fifths(
+            num_notes=num_notes, num_fifths=num_fifths, seed=seed
+        )
+        return render_sequence(self._synth, notes, self._gap_seconds)
