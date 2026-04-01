@@ -15,9 +15,11 @@ Module-level helpers (also importable):
 """
 from __future__ import annotations
 
+import random  # noqa: F401  -- used in generate_circle_of_fifths (Task 2)
+
 import numpy as np
 
-from musicboxfactory.synth import SAMPLE_RATE, Synth  # noqa: F401
+from musicboxfactory.synth import SAMPLE_RATE, Synth
 
 # Type alias
 NoteSequence = list[tuple[str, float]]
@@ -33,9 +35,34 @@ LULLABY_PRESETS: dict[str, NoteSequence] = {
     "mary": MARY_HAD_A_LITTLE_LAMB,
 }
 
+# Module-level constants for procedural generation
+CHROMATIC: list[str] = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"]
+MAJOR_INTERVALS: list[int] = [0, 2, 4, 5, 7, 9, 11]
+
 
 def _trim_to_zero_crossing(buf: np.ndarray, search_window: int = 2048) -> np.ndarray:
-    raise NotImplementedError
+    """Trim buffer to the last zero crossing within search_window samples from end.
+
+    Prevents audible click at loop boundary by ensuring the buffer ends at a
+    zero crossing.
+
+    Args:
+        buf: float32 mono audio buffer.
+        search_window: Number of tail samples to search for a zero crossing.
+
+    Returns:
+        Buffer trimmed to the last zero crossing, or the original buffer if
+        none found or buffer is too short.
+    """
+    if len(buf) < 2:
+        return buf
+    tail_start = max(0, len(buf) - search_window)
+    tail = buf[tail_start:]
+    sign_changes = np.where(np.diff(np.sign(tail)) != 0)[0]
+    if len(sign_changes) == 0:
+        return buf
+    last_zc = tail_start + sign_changes[-1] + 1
+    return buf[:last_zc]
 
 
 def render_sequence(
@@ -43,7 +70,33 @@ def render_sequence(
     notes: NoteSequence,
     gap_seconds: float = 0.05,
 ) -> np.ndarray:
-    raise NotImplementedError
+    """Render a sequence of notes into a single float32 buffer.
+
+    Calls synth.render() once per note, inserts silence gaps between notes,
+    concatenates all buffers, and trims the end to the nearest zero crossing.
+
+    Args:
+        synth: Constructed Synth instance.
+        notes: List of (note_name, duration_seconds) tuples.
+        gap_seconds: Silence duration between notes in seconds.
+
+    Returns:
+        np.ndarray, dtype=float32, shape=(N,), values in [-1.0, 1.0].
+        Returns shape (0,) for an empty note list.
+    """
+    silence = np.zeros(int(SAMPLE_RATE * gap_seconds), dtype=np.float32)
+    chunks: list[np.ndarray] = []
+    for note, duration in notes:
+        if duration <= 0.0:
+            continue  # skip zero/negative duration notes
+        buf = synth.render(note, duration)
+        chunks.append(buf)
+        chunks.append(silence)
+    if not chunks:
+        return np.zeros(0, dtype=np.float32)
+    combined = np.concatenate(chunks)
+    combined = _trim_to_zero_crossing(combined)
+    return combined
 
 
 def generate_circle_of_fifths(
