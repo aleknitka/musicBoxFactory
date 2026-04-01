@@ -64,10 +64,10 @@ def test_pink_spectral_slope() -> None:
 
 
 def test_pink_no_dc() -> None:
-    """pink(5.0) mean absolute value is < 0.01 (no DC bias)."""
+    """pink(5.0) absolute mean is < 0.01 (no DC bias)."""
     gen = AmbientGenerator(seed=42)
     buf = gen.pink(5.0)
-    assert float(np.abs(buf).mean()) < 0.01
+    assert abs(float(buf.mean())) < 0.01
 
 
 # ---------------------------------------------------------------------------
@@ -98,10 +98,10 @@ def test_brown_spectral_slope() -> None:
 
 
 def test_brown_no_dc() -> None:
-    """brown(5.0) mean absolute value is < 0.01 (no DC bias)."""
+    """brown(5.0) absolute mean is < 0.01 (no DC bias)."""
     gen = AmbientGenerator(seed=42)
     buf = gen.brown(5.0)
-    assert float(np.abs(buf).mean()) < 0.01
+    assert abs(float(buf.mean())) < 0.01
 
 
 # ---------------------------------------------------------------------------
