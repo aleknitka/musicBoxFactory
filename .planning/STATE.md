@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Completed 01-tone-synthesis plan 02 (Synth class implementation)
-last_updated: "2026-03-31T20:42:50.193Z"
-last_activity: 2026-03-30 — Roadmap created; Phase 1 ready to plan
+status: executing
+stopped_at: Completed 02-melody-pipeline plan 01 (TDD scaffold)
+last_updated: "2026-04-01T05:51:20.914Z"
+last_activity: 2026-04-01
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 4
+  completed_plans: 3
   percent: 0
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** Given a melody (preset, custom, or procedurally generated) and an ambient type, produce a seamlessly loopable WAV file that sounds warm and sleep-inducing for babies.
-**Current focus:** Phase 1 — Tone Synthesis
+**Current focus:** Phase 02 — melody-pipeline
 
 ## Current Position
 
-Phase: 1 of 4 (Tone Synthesis)
-Plan: 0 of ? in current phase
-Status: Ready to plan
-Last activity: 2026-03-30 — Roadmap created; Phase 1 ready to plan
+Phase: 02 (melody-pipeline) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
+Last activity: 2026-04-01
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-tone-synthesis P01 | 15 | 2 tasks | 5 files |
 | Phase 01-tone-synthesis P02 | 18 | 2 tasks | 2 files |
+| Phase 02-melody-pipeline P01 | 116 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,7 @@ Recent decisions affecting current work:
 - [Phase 01-tone-synthesis]: Integration tests use requires_sf2 marker with MBF_SF2_PATH env var override for CI flexibility
 - [Phase 01-tone-synthesis]: Lazy fluidsynth import with OSError/ImportError catch defers C-library errors to Synth instantiation, allowing unit tests to pass without libfluidsynth3
 - [Phase 01-tone-synthesis]: Peak normalization in render() guarantees [-1.0, 1.0] buffer contract regardless of FluidSynth gain
+- [Phase 02-melody-pipeline]: LULLABY_PRESETS stubs use empty lists to allow imports succeed and preserve dict structure for Plan 02
 
 ### Pending Todos
 
@@ -83,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-31T20:42:50.191Z
-Stopped at: Completed 01-tone-synthesis plan 02 (Synth class implementation)
+Last session: 2026-04-01T05:51:20.911Z
+Stopped at: Completed 02-melody-pipeline plan 01 (TDD scaffold)
 Resume file: None

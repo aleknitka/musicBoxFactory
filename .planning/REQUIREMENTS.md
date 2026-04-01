@@ -12,9 +12,9 @@
 
 ### Melody
 
-- [ ] **MELO-01**: Library ships with built-in lullaby presets (Twinkle Twinkle, Brahms' Lullaby, and others) as note sequences
-- [ ] **MELO-02**: Caller can provide a custom note sequence as a list of `(note, duration)` tuples (e.g. `[("c4", 4), ("g4", 8)]`)
-- [ ] **MELO-03**: Library can procedurally generate a novel melody loop by traversing the circle of fifths (Western scales; non-Western deferred to v2)
+- [x] **MELO-01**: Library ships with built-in lullaby presets (Twinkle Twinkle, Brahms' Lullaby, and others) as note sequences
+- [x] **MELO-02**: Caller can provide a custom note sequence as a list of `(note, duration)` tuples (e.g. `[("c4", 4), ("g4", 8)]`)
+- [x] **MELO-03**: Library can procedurally generate a novel melody loop by traversing the circle of fifths (Western scales; non-Western deferred to v2)
 
 ### Ambient
 
@@ -67,9 +67,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | TONE-01 | Phase 1 | Complete |
 | TONE-02 | Phase 1 | Complete |
-| MELO-01 | Phase 2 | Pending |
-| MELO-02 | Phase 2 | Pending |
-| MELO-03 | Phase 2 | Pending |
+| MELO-01 | Phase 2 | Complete |
+| MELO-02 | Phase 2 | Complete |
+| MELO-03 | Phase 2 | Complete |
 | AMBI-01 | Phase 3 | Pending |
 | AMBI-02 | Phase 3 | Pending |
 | AMBI-03 | Phase 3 | Pending |

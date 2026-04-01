@@ -46,7 +46,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Scaffold: write failing test stubs for MELO-01/02/03, create melody.py skeleton (MELO-01, MELO-02, MELO-03)
+- [x] 02-01-PLAN.md — Scaffold: write failing test stubs for MELO-01/02/03, create melody.py skeleton (MELO-01, MELO-02, MELO-03)
 - [ ] 02-02-PLAN.md — Implement: render_sequence, presets, procedural generator, MelodyPipeline class, update __init__.py (MELO-01, MELO-02, MELO-03)
 
 ### Phase 3: Ambient Generation
@@ -80,6 +80,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Tone Synthesis | 2/2 | Complete   | 2026-03-31 |
-| 2. Melody Pipeline | 0/2 | Not started | - |
+| 2. Melody Pipeline | 1/2 | In Progress|  |
 | 3. Ambient Generation | 0/? | Not started | - |
 | 4. Mixing & WAV Output | 0/? | Not started | - |
