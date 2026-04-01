@@ -58,7 +58,11 @@ Plans:
   2. Caller can generate a pink noise buffer with a −3 dB/octave rolloff (no DC drift)
   3. Caller can generate a brown noise buffer with a −6 dB/octave rolloff (no DC drift)
   4. Caller can generate a womb/heartbeat buffer: brown noise base with a rhythmic ~60 BPM low-frequency pulse audible on playback
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Scaffold: move scipy to runtime deps, create ambient.py stub, write 12 failing test stubs (AMBI-01, AMBI-02, AMBI-03, AMBI-04)
+- [ ] 03-02-PLAN.md — Implement: white/pink/brown/womb methods, export AmbientGenerator from top-level package (AMBI-01, AMBI-02, AMBI-03, AMBI-04)
 
 ### Phase 4: Mixing & WAV Output
 **Goal**: Callers can mix melody and ambient layers and write a normalized, loop-safe WAV file
@@ -81,5 +85,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Tone Synthesis | 2/2 | Complete   | 2026-03-31 |
 | 2. Melody Pipeline | 2/2 | Complete   | 2026-04-01 |
-| 3. Ambient Generation | 0/? | Not started | - |
+| 3. Ambient Generation | 0/2 | Not started | - |
 | 4. Mixing & WAV Output | 0/? | Not started | - |
