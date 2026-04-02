@@ -18,12 +18,12 @@ Given a melody (preset or custom) and an ambient type, produce a seamlessly loop
 - [x] Procedural melody generation via circle-of-fifths traversal (Validated in Phase 2: Melody Pipeline)
 - [x] Loop-safe melody buffer with zero-crossing trim (Validated in Phase 2: Melody Pipeline)
 
-### Active
+### Validated (continued)
 
 - [x] Ambient sound generation — white/pink/brown noise, womb/heartbeat pulse (Validated in Phase 3: Ambient Generation)
-- [ ] Layering — mix melody and ambient at configurable relative volumes
-- [ ] WAV output — generates a loopable WAV file of configurable duration
-- [ ] Clean Python library API — callable functions, no CLI required
+- [x] Layering — mix melody and ambient at configurable relative volumes (Validated in Phase 4: Mixing / WAV Output)
+- [x] WAV output — generates a loopable WAV file of configurable duration (Validated in Phase 4: Mixing / WAV Output)
+- [x] Clean Python library API — callable functions, no CLI required (Validated in Phase 4: Mixing / WAV Output)
 
 ### Out of Scope
 
@@ -58,4 +58,4 @@ Given a melody (preset or custom) and an ambient type, produce a seamlessly loop
 | numpy + stdlib wave | Minimal deps; sufficient for synthesis and WAV writing | — Pending |
 
 ---
-*Last updated: 2026-04-01 — Phase 3 complete (Ambient Generation)*
+*Last updated: 2026-04-02 — Phase 4 complete (Mixing / WAV Output) — all 4 phases done, v1 milestone complete*
