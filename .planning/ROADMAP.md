@@ -74,7 +74,11 @@ Plans:
   3. Caller can specify output duration in seconds and receive a WAV file of exactly that length
   4. Generated WAV file plays back in a loop with no audible click at the boundary (zero-crossing enforced)
   5. Caller can specify fade-in and fade-out durations applied at the file boundaries
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Scaffold: create mixer.py stub, write 10 failing test stubs (OUT-01, OUT-02, OUT-03, OUT-04, OUT-05)
+- [ ] 04-02-PLAN.md — Implement: Mixer class, export from __init__.py, turn test suite GREEN (OUT-01, OUT-02, OUT-03, OUT-04, OUT-05)
 
 ## Progress
 
@@ -86,4 +90,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Tone Synthesis | 2/2 | Complete   | 2026-03-31 |
 | 2. Melody Pipeline | 2/2 | Complete   | 2026-04-01 |
 | 3. Ambient Generation | 2/2 | Complete   | 2026-04-01 |
-| 4. Mixing & WAV Output | 0/? | Not started | - |
+| 4. Mixing & WAV Output | 0/2 | Not started | - |
