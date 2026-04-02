@@ -77,7 +77,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Scaffold: create mixer.py stub, write 10 failing test stubs (OUT-01, OUT-02, OUT-03, OUT-04, OUT-05)
+- [x] 04-01-PLAN.md — Scaffold: create mixer.py stub, write 10 failing test stubs (OUT-01, OUT-02, OUT-03, OUT-04, OUT-05)
 - [ ] 04-02-PLAN.md — Implement: Mixer class, export from __init__.py, turn test suite GREEN (OUT-01, OUT-02, OUT-03, OUT-04, OUT-05)
 
 ## Progress
@@ -90,4 +90,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Tone Synthesis | 2/2 | Complete   | 2026-03-31 |
 | 2. Melody Pipeline | 2/2 | Complete   | 2026-04-01 |
 | 3. Ambient Generation | 2/2 | Complete   | 2026-04-01 |
-| 4. Mixing & WAV Output | 0/2 | Not started | - |
+| 4. Mixing & WAV Output | 1/2 | In Progress|  |
