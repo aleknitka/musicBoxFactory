@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Tone Synthesis** - Render music box tones from a .sf2 soundfont with named instrument presets (completed 2026-03-31)
 - [x] **Phase 2: Melody Pipeline** - Sequence notes into loopable melodies using presets, custom input, or procedural generation (completed 2026-04-01)
 - [x] **Phase 3: Ambient Generation** - Produce white, pink, brown, and womb/heartbeat noise buffers (completed 2026-04-01)
-- [ ] **Phase 4: Mixing & WAV Output** - Combine melody and ambient layers, normalize, and write a loop-safe WAV file
+- [x] **Phase 4: Mixing & WAV Output** - Combine melody and ambient layers, normalize, and write a loop-safe WAV file (completed 2026-04-02)
 
 ## Phase Details
 
@@ -78,7 +78,7 @@ Plans:
 
 Plans:
 - [x] 04-01-PLAN.md — Scaffold: create mixer.py stub, write 10 failing test stubs (OUT-01, OUT-02, OUT-03, OUT-04, OUT-05)
-- [ ] 04-02-PLAN.md — Implement: Mixer class, export from __init__.py, turn test suite GREEN (OUT-01, OUT-02, OUT-03, OUT-04, OUT-05)
+- [x] 04-02-PLAN.md — Implement: Mixer class, export from __init__.py, turn test suite GREEN (OUT-01, OUT-02, OUT-03, OUT-04, OUT-05)
 
 ## Progress
 
@@ -90,4 +90,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Tone Synthesis | 2/2 | Complete   | 2026-03-31 |
 | 2. Melody Pipeline | 2/2 | Complete   | 2026-04-01 |
 | 3. Ambient Generation | 2/2 | Complete   | 2026-04-01 |
-| 4. Mixing & WAV Output | 1/2 | In Progress|  |
+| 4. Mixing & WAV Output | 2/2 | Complete   | 2026-04-02 |
