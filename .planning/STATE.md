@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed 03-ambient-generation plan 02 (implementation)
-last_updated: "2026-04-01T19:39:06.177Z"
-last_activity: 2026-04-01
+stopped_at: Completed 04-mixing-wav-output plan 02 (Mixer implementation)
+last_updated: "2026-04-02T21:22:42.153Z"
+last_activity: 2026-04-02
 progress:
   total_phases: 4
-  completed_phases: 3
-  total_plans: 6
-  completed_plans: 6
+  completed_phases: 4
+  total_plans: 8
+  completed_plans: 8
   percent: 0
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** Given a melody (preset, custom, or procedurally generated) and an ambient type, produce a seamlessly loopable WAV file that sounds warm and sleep-inducing for babies.
-**Current focus:** Phase 03 — ambient-generation
+**Current focus:** Phase 04 — mixing-wav-output
 
 ## Current Position
 
-Phase: 4
+Phase: 04
 Plan: Not started
 Status: Phase complete — ready for verification
-Last activity: 2026-04-01
+Last activity: 2026-04-02
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -58,6 +58,8 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-melody-pipeline P02 | 245 | 3 tasks | 2 files |
 | Phase 03-ambient-generation P01 | 8 | 2 tasks | 4 files |
 | Phase 03-ambient-generation P02 | 25 | 2 tasks | 3 files |
+| Phase 04-mixing-wav-output P01 | 2 | 2 tasks | 2 files |
+| Phase 04-mixing-wav-output P02 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -81,6 +83,9 @@ Recent decisions affecting current work:
 - [Phase 03-ambient-generation]: AmbientGenerator uses np.random.default_rng(seed) for reproducible noise generation
 - [Phase 03-ambient-generation]: womb() uses narrow two-Gaussian envelope (s=100/80 samples, 300-sample separation) — plan's wide Gaussians created two separate LFO test peaks per beat, narrow pulses merge into one
 - [Phase 03-ambient-generation]: test DC-bias assertions fixed: np.abs(buf).mean() corrected to abs(float(buf.mean())) — tests from Plan 01 had wrong assertion for DC check
+- [Phase 04-mixing-wav-output]: Top-level Mixer import placed inside test_import body (not module level) to allow test collection when __init__.py has not yet exported Mixer
+- [Phase 04-mixing-wav-output]: Peak normalization in write() guarantees no int16 clipping regardless of input amplitude
+- [Phase 04-mixing-wav-output]: Operation order in write(): fade_out check → zero-crossing trim → tile → fade-in → normalize → int16 → write
 
 ### Pending Todos
 
@@ -94,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T18:56:25.212Z
-Stopped at: Completed 03-ambient-generation plan 02 (implementation)
+Last session: 2026-04-02T20:56:48.351Z
+Stopped at: Completed 04-mixing-wav-output plan 02 (Mixer implementation)
 Resume file: None

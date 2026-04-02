@@ -35,17 +35,36 @@ uv add musicboxfactory
 
 ---
 
-## Quickstart
+## Generate a file
 
 ```python
-from musicboxfactory import Synth, PRESETS
+from musicboxfactory import Synth, MelodyPipeline, AmbientGenerator, Mixer
 
+# 1. Load your soundfont
 synth = Synth("path/to/soundfont.sf2", preset="music_box")
 
-# Render middle C for 2 seconds
-buf = synth.render("c4", duration=2.0)
-# buf: np.ndarray, dtype=float32, shape=(88200,), values in [-1.0, 1.0]
+# 2. Build a melody — pick one approach:
+pipeline = MelodyPipeline(synth)
+melody = pipeline.from_preset("twinkle")          # built-in lullaby
+# melody = pipeline.from_preset("brahms")         # Brahms' lullaby
+# melody = pipeline.from_preset("mary")           # Mary Had a Little Lamb
+# melody = pipeline.from_notes([("c4", 0.5), ("g4", 0.5)])  # custom notes
+# melody = pipeline.from_procedural(num_notes=16, seed=42)   # procedural
+
+# 3. Generate ambient noise — pick one:
+gen = AmbientGenerator(seed=42)
+ambient = gen.pink(duration=len(melody) / 44100)   # pink noise (most popular)
+# ambient = gen.white(...)   # white noise
+# ambient = gen.brown(...)   # brown noise
+# ambient = gen.womb(...)    # womb/heartbeat (brown + ~60 BPM pulse)
+
+# 4. Mix and write a 10-minute loopable WAV
+mixer = Mixer(melody_vol=0.8, ambient_vol=0.3)
+buf = mixer.mix(melody, ambient)
+mixer.write(buf, "sleep.wav", duration=600.0, fade_in=2.0)
 ```
+
+The output is a seamlessly loopable 44100 Hz / 16-bit mono WAV. Tiling is handled automatically — the one-pass melody buffer is tiled to fill the requested duration.
 
 ---
 
@@ -62,7 +81,7 @@ Loads a soundfont and selects an instrument preset. Rendering is offline — no 
 
 Raises `ValueError` for unknown presets, `FileNotFoundError` if the soundfont cannot be loaded, `OSError` if `libfluidsynth3` is not installed.
 
-### `synth.render(note, duration) -> np.ndarray`
+#### `synth.render(note, duration) -> np.ndarray`
 
 Renders a single note to a float32 mono buffer.
 
@@ -71,9 +90,7 @@ Renders a single note to a float32 mono buffer.
 | `note` | `str` | Note name: `"c4"`, `"g#3"`, `"bb5"`, etc. |
 | `duration` | `float` | Buffer length in seconds |
 
-Returns `np.ndarray` — dtype `float32`, shape `(N,)`, values in `[-1.0, 1.0]`, where `N = int(44100 * duration)`.
-
-### `PRESETS`
+#### `PRESETS`
 
 ```python
 {
@@ -82,6 +99,53 @@ Returns `np.ndarray` — dtype `float32`, shape `(N,)`, values in `[-1.0, 1.0]`,
     "bells":     14,  # GM program 15: Tubular Bells
 }
 ```
+
+---
+
+### `MelodyPipeline(synth, gap_seconds=0.05)`
+
+Sequences notes into a melody buffer. Inserts 50 ms silence between notes by default and trims the end to the nearest zero crossing for clean looping.
+
+| Method | Description |
+|--------|-------------|
+| `from_preset(name)` | Render a built-in lullaby. Names: `"twinkle"`, `"brahms"`, `"mary"` |
+| `from_notes(notes)` | Render a caller-supplied `list[tuple[str, float]]` (note, duration) |
+| `from_procedural(num_notes, num_fifths, seed)` | Generate a circle-of-fifths melody |
+
+---
+
+### `AmbientGenerator(seed=None)`
+
+Generates ambient noise buffers. All methods return float32 mono at 44100 Hz.
+
+| Method | Description |
+|--------|-------------|
+| `white(duration)` | White noise |
+| `pink(duration)` | Pink noise (−3 dB/oct) |
+| `brown(duration)` | Brown noise (−6 dB/oct) |
+| `womb(duration, bpm=60.0)` | Brown noise + ~60 BPM lub-dub heartbeat envelope |
+
+---
+
+### `Mixer(melody_vol=0.8, ambient_vol=0.3)`
+
+Combines audio layers and writes the output WAV.
+
+#### `mixer.mix(melody, ambient) -> np.ndarray`
+
+Scales and sums two same-length float32 buffers. Raises `ValueError` if shapes differ.
+
+#### `mixer.write(buf, path, duration, fade_in=0.0, fade_out=0.0)`
+
+Tiles `buf` to `duration` seconds, normalizes, applies fade-in, and writes a 16-bit mono WAV.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `buf` | `np.ndarray` | Mixed buffer from `mix()` |
+| `path` | `str` | Output file path |
+| `duration` | `float` | Total WAV length in seconds |
+| `fade_in` | `float` | Fade-in duration in seconds (default 0.0) |
+| `fade_out` | `float` | Must be 0.0 — loop safety constraint |
 
 ---
 
@@ -96,7 +160,7 @@ All audio buffers are `np.ndarray`, dtype `float32`, shape `(N,)` (mono), sample
 ```bash
 uv sync
 
-uv run pytest          # 4 unit tests pass without libfluidsynth3; 4 integration tests skip
+uv run pytest          # unit tests pass without libfluidsynth3; integration tests skip
 uv run mypy src/
 uv run ruff check src/
 ```
@@ -105,13 +169,9 @@ uv run ruff check src/
 
 ## Architecture
 
-The library is structured as four phases:
-
-| Phase | Module | Responsibility |
-|-------|--------|----------------|
-| 1 | `synth.py` | Soundfont-rendered note synthesis via FluidSynth |
-| 2 | `melody.py` | Sequence notes into melody buffers; built-in lullaby presets |
-| 3 | `ambient.py` | White / pink / brown / womb noise generation |
-| 4 | `mixer.py` | Mix melody + ambient, normalize, write loopable WAV |
-
-Phases 2–4 are not yet implemented.
+| Module | Responsibility |
+|--------|----------------|
+| `synth.py` | Soundfont-rendered note synthesis via FluidSynth |
+| `melody.py` | Sequence notes into melody buffers; built-in lullaby presets |
+| `ambient.py` | White / pink / brown / womb noise generation |
+| `mixer.py` | Mix melody + ambient, normalize, write loopable WAV |
