@@ -5,6 +5,8 @@ import tempfile
 import time
 from pathlib import Path
 
+import numpy as np
+
 from musicboxfactory.ambient import AmbientGenerator
 from musicboxfactory.melody import MelodyPipeline
 from musicboxfactory.mixer import Mixer
@@ -35,29 +37,35 @@ def generate_audio(request: AudioRequest) -> str:
     # 1. Initialize Synth
     synth = Synth(request.sf2_path, preset=request.instrument)
 
-    # 2. Generate Melody
+    # 2. Generate Melody Loop
     pipeline = MelodyPipeline(synth)
     if request.melody_type == "preset":
-        melody_buf = pipeline.from_preset(request.melody_preset)
+        melody_loop = pipeline.from_preset(request.melody_preset)
     else:
-        # For procedural, we use some defaults: 32 notes, seed is time-based
-        melody_buf = pipeline.from_procedural(num_notes=32, seed=int(time.time()))
-
-    # 3. Generate Ambient
+        # For procedural, use 32 notes
+        melody_loop = pipeline.from_procedural(num_notes=32, seed=int(time.time()))
+    
+    # 3. Generate Ambient Noise
+    # To avoid "skipping" noise, we generate noise for the FULL requested duration
+    target_n = int(request.duration * 44100.0)
     generator = AmbientGenerator()
     ambient_method = getattr(generator, request.ambient_type)
-    # Ensure ambient is same length as melody for mixing (OUT-01 requirement)
-    duration_s = len(melody_buf) / 44100.0
-    ambient_buf = ambient_method(duration=duration_s)
+    ambient_full = ambient_method(duration=request.duration)
+    
+    # 4. Prepare for Mixing
+    # Tile melody to the target duration (OUT-03 tiling behavior moved here for noise quality)
+    n_tiles = int(np.ceil(target_n / len(melody_loop)))
+    melody_full = np.tile(melody_loop, n_tiles)[:target_n].astype(np.float32)
 
-    # 4. Mix and Write
+    # 5. Mix and Write
     mixer = Mixer(melody_vol=request.melody_vol, ambient_vol=request.ambient_vol)
-    mixed_buf = mixer.mix(melody_buf, ambient_buf)
+    mixed_buf = mixer.mix(melody_full, ambient_full)
 
     # Create a unique filename
     output_filename = f"gen_{int(time.time() * 1000)}.wav"
     output_path = TEMP_DIR / output_filename
 
+    # We call write() with the same duration so it doesn't tile further
     mixer.write(
         mixed_buf,
         str(output_path),

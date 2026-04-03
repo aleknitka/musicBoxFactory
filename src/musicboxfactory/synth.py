@@ -139,8 +139,7 @@ class Synth:
         self._fs.noteon(0, midi_note, 100)
         body = self._collect_samples(n_samples)
 
-        # Noteoff then drain decay tail (music box tines ring 2-4 seconds;
-        # not draining causes abrupt silence — see RESEARCH.md Pitfall 1)
+        # Noteoff then drain decay tail
         self._fs.noteoff(0, midi_note)
         tail_samples = int(SAMPLE_RATE * 3.0)
         self._collect_samples(tail_samples)  # discard tail
