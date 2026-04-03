@@ -46,16 +46,13 @@ def generate_audio(request: AudioRequest) -> str:
     # 3. Generate Ambient
     generator = AmbientGenerator()
     ambient_method = getattr(generator, request.ambient_type)
-    ambient_buf = ambient_method(duration=10.0)  # ambient loop base is 10s
+    # Ensure ambient is same length as melody for mixing (OUT-01 requirement)
+    duration_s = len(melody_buf) / 44100.0
+    ambient_buf = ambient_method(duration=duration_s)
 
     # 4. Mix and Write
-    mixer = Mixer()
-    mixed_buf = mixer.mix(
-        melody_buf,
-        ambient_buf,
-        melody_vol=request.melody_vol,
-        ambient_vol=request.ambient_vol,
-    )
+    mixer = Mixer(melody_vol=request.melody_vol, ambient_vol=request.ambient_vol)
+    mixed_buf = mixer.mix(melody_buf, ambient_buf)
 
     # Create a unique filename
     output_filename = f"gen_{int(time.time() * 1000)}.wav"
