@@ -1,34 +1,35 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: verifying
-stopped_at: Completed 04-mixing-wav-output plan 02 (Mixer implementation)
-last_updated: "2026-04-02T21:22:42.153Z"
-last_activity: 2026-04-02
+milestone: v2.0
+milestone_name: UI & Infrastructure
+status: complete
+stopped_at: Phase 05 complete, verified, and bug-fixed (Mixer.mix argument error)
+last_updated: "2026-04-03T21:55:00.000Z"
+last_activity: 2026-04-03
 progress:
-  total_phases: 4
-  completed_phases: 4
-  total_plans: 8
-  completed_plans: 8
-  percent: 0
+  total_phases: 7
+  completed_phases: 5
+  total_plans: 12
+  completed_plans: 10
+  percent: 83
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-30)
+See: .planning/PROJECT.md (updated 2026-04-02)
 
 **Core value:** Given a melody (preset, custom, or procedurally generated) and an ambient type, produce a seamlessly loopable WAV file that sounds warm and sleep-inducing for babies.
-**Current focus:** Phase 04 — mixing-wav-output
+**Current focus:** Phase 05 — User Interface (Gradio + FastAPI)
 
 ## Current Position
 
-Phase: 04
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-04-02
+Phase: 05
+Plan: 02
+Status: complete
+Last activity: 2026-04-03
+
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -89,7 +90,10 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- [ ] Add container function (.planning/todos/pending/2026-04-01-add-container-function.md)
+- [ ] Build simple Gradio frontend UI interact with FastAPI (.planning/todos/pending/2026-04-01-build-simple-gradio-frontend-ui-interact-with-fastapi.md)
+- [ ] Add GitHub workflows for testing and deployment (.planning/todos/pending/2026-04-03-add-github-workflows-for-testing-and-deployment.md)
+
 
 ### Blockers/Concerns
 

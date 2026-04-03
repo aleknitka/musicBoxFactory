@@ -68,6 +68,22 @@ The output is a seamlessly loopable 44100 Hz / 16-bit mono WAV. Tiling is handle
 
 ---
 
+## Web UI
+
+Music Box Factory comes with a built-in web interface (Gradio + FastAPI) for interactive audio generation.
+
+### Running the UI
+
+To start the web interface:
+```bash
+uv run scripts/run_ui.py
+```
+Then navigate to `http://localhost:8000/ui` in your browser.
+
+The API documentation is available at `http://localhost:8000/docs`.
+
+---
+
 ## API
 
 ### `Synth(sf2_path, preset="music_box")`
