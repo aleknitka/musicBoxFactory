@@ -4,8 +4,8 @@ milestone: v1.0
 milestone_name: milestone
 status: verifying
 stopped_at: Completed 04-mixing-wav-output plan 02 (Mixer implementation)
-last_updated: "2026-04-02T21:22:42.153Z"
-last_activity: 2026-04-02
+last_updated: "2026-04-03T21:05:00.000Z"
+last_activity: 2026-04-03
 progress:
   total_phases: 4
   completed_phases: 4
@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-30)
 Phase: 04
 Plan: Not started
 Status: Phase complete — ready for verification
-Last activity: 2026-04-02
+Last activity: 2026-04-03
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -89,7 +89,10 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- [ ] Add container function (.planning/todos/pending/2026-04-01-add-container-function.md)
+- [ ] Build simple Gradio frontend UI interact with FastAPI (.planning/todos/pending/2026-04-01-build-simple-gradio-frontend-ui-interact-with-fastapi.md)
+- [ ] Add GitHub workflows for testing and deployment (.planning/todos/pending/2026-04-03-add-github-workflows-for-testing-and-deployment.md)
+
 
 ### Blockers/Concerns
 
